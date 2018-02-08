@@ -1,0 +1,4 @@
+#!ipxe
+kernel http://MYIPADDR:80/linux quiet ip=:::::eth0:dhcp serverip=MYIPADDR
+initrd http://MYIPADDR:80/initrd
+boot
