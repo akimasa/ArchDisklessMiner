@@ -3,7 +3,7 @@
 # 使い方
 - bash bootstrap-ubuntu.sh
 - sudo CHROOT="mount --bind /proc /srv/arch/proc; mount --bind /dev /srv/arch/dev; chroot" IP="10.0.2.12" HTTPROOT="/var/www/html/" NFSBOOT=1 bash setip.sh
-- - CHROOTとHTTPROOTはUbuntuの場合の値にしてある。
+- - CHROOTとHTTPROOTはUbuntuの場合の値にしてある。
 - - *IPはサーバーのIPアドレスをip addrなどで調べて変更すること*
 
 同じネットワークにつながっているリグを起動すれば、PXEブートが選べるはず。
@@ -20,7 +20,7 @@ bootstrap-ubuntu.shのあるディレクトリに戻る
 - sudo CHROOT="mount --bind /proc /srv/arch/proc; mount --bind /dev /srv/arch/dev; chroot" IP="10.0.2.12" HTTPROOT="/var/www/html/" bash setip.sh
 
 先ほど実行したコマンドからNFSBOOT=1を抜いたものを実行する。
-そして、PXEブートすれば、今度はsquashfsとoverlayfsで起動する。
+そして、PXEブートすれば、今度はsquashfsとoverlayfsで起動する。
 
 # 使わせていただいたもの
 - https://github.com/tokland/arch-bootstrap
