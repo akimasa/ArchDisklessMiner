@@ -1,0 +1,9 @@
+[Unit]
+Description=Set boot ip
+After=syslog.target network-online.target dnsmasq.service
+
+[Service]
+ExecStart=/root/setip.sh
+
+[Install]
+WantedBy=multi-user.target
