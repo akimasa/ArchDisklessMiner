@@ -38,7 +38,7 @@ run_hook() {
 	mkdir /mnt2/
         mount -t tmpfs -o size=1500M tmpfs /mnt2/
         echo "loading sfs"
-        curl http://${serverip}/arch.sfs > /mnt2/arch.sfs
+        curl -# http://${serverip}/arch.sfs > /mnt2/arch.sfs
         echo "loaded sfs"
         mkdir -p /mnt2/rw/upper /mnt2/rw/work /mnt2/ro/
         mount -t squashfs -o loop /mnt2/arch.sfs /mnt2/ro/
