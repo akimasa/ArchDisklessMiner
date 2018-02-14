@@ -1,3 +1,7 @@
+重要
+====
+変更があったので、今はそのままでは使えません！
+
 Live USB作成向けのファイル
 ========================
 1. default.ipxe, dnsmasq.conf, setip.shを/root/に設置
