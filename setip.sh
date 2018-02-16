@@ -17,3 +17,11 @@ if [ ! "$SKIPINITCPIO" == "1" ]; then eval $CHROOT /srv/arch/ mkinitcpio -p linu
 cp /srv/arch/boot/initramfs-linux-fallback.img ${HTTPROOT}/initrd
 cp /srv/arch/boot/vmlinuz-linux ${HTTPROOT}/linux
 systemctl restart dnsmasq
+
+echo maybe you need to make squashfs file
+echo execute mksquashfs /srv/arch/ /srv/http/arch.sfs -e /srv/arch/boot/
+echo
+echo "copy to windows pc as following if needed:"
+echo /srv/arch/boot/initramfs-linux-fallback.img as initrd
+echo /srv/arch/boot/vmlinuz-linux as linux
+echo /srv/http/arch.sfs as arch.sfs
