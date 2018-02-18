@@ -1,6 +1,6 @@
 #!/bin/bash
 mkdir /srv/arch
-pacstrap -c /srv/arch base nvidia nvidia-settings opencl-nvidia ocl-icd libcurl-compat xorg-server xorg-xinit xorg-twm xterm mkinitcpio-nfs-utils nfs-utils openssh avahi curl
+pacstrap -c /srv/arch base nvidia nvidia-settings opencl-nvidia ocl-icd libcurl-compat xorg-server xorg-xinit xorg-twm xterm mkinitcpio-nfs-utils nfs-utils openssh avahi curl libmicrohttpd hwloc
 ./bootstrap-common.sh
 echo finished bootstraping /srv/arch
 echo please execute ./setip.sh
