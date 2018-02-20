@@ -9,4 +9,4 @@ cache:
 before_install:
 - docker pull base/archlinux
 script:
-- docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ -v /home/travis/pkg/:/var/cache/pacman/pkg/ base/archlinux /bin/bash -c "pacman -Syu --noconfirm; pacman --noconfirm -S squashfs-tools; mkdir /run/shm; cd /root; bash bootstrap-arch.sh; bash setip.sh; mksquashfs /srv/arch/ /root/arch.sfs -e /srv/arch/boot/; ls -lh /root/arch.sfs"
+- docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ -v /home/travis/pkg/:/var/cache/pacman/pkg/ base/archlinux /bin/bash /root/travis.sh
