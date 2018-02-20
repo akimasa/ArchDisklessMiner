@@ -5,8 +5,7 @@ services:
 
 before_install:
 - docker pull base/archlinux
+- docker run base/archlinux /bin/sh -c "pacman -Syu --noconfirm; pacman -noconfirm -S arch-install-scripts; bash bootstrap-arch.sh"
 
 script:
-- pacman -Syu --noconfirm
-- pacman -noconfirm -S arch-install-scripts
-- bash bootstrap-arch.sh
+- echo hoge
