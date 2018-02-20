@@ -6,8 +6,7 @@ services:
 before_install:
 - docker pull base/archlinux
 - docker run base/archlinux /bin/sh -c "pacman -Syu --noconfirm; pacman --noconfirm -S arch-install-scripts"
-- docker run base/archlinux /bin/sh -c "ls"
-
+- docker run base/archlinux /bin/sh -c "ls /root"
 script:
 - cd akimasa/ArchDisklessMiner
 - bash bootstrap-arch.sh
