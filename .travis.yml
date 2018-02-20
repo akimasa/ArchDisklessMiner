@@ -2,6 +2,9 @@ sudo: required
 
 services:
   - docker
+cache:
+  directories:
+    - /home/travis/pkg/
 
 before_install:
 - docker pull base/archlinux
@@ -9,5 +12,4 @@ before_install:
 script:
 - pwd
 - ls -R
-- docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ base/archlinux /bin/bash -c "mkdir /run/shm; bash /root/bootstrap-arch.sh"
-- docker run base/archlinux /bin/bash -c "bash /root/setip.sh"
+- docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ -v /home/travis/pkg/:/var/cache/pacman/pkg/ base/archlinux /bin/bash -c "mkdir /run/shm; bash /root/bootstrap-arch.sh; bash /root/setip.sh"
