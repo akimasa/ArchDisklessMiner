@@ -5,7 +5,7 @@ services:
 
 before_install:
 - docker pull base/archlinux
-- docker run base/archlinux /bin/sh -c "pacman -Syu --noconfirm; pacman -noconfirm -S arch-install-scripts"
+- docker run base/archlinux /bin/sh -c "pacman -noconfirm -S arch-install-scripts"
 
 script:
 - cd akimasa/ArchDisklessMiner
