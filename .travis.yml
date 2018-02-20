@@ -7,5 +7,7 @@ before_install:
 - docker pull base/archlinux
 - docker run base/archlinux /bin/sh -c "pacman -Syu --noconfirm; pacman --noconfirm -S arch-install-scripts"
 script:
-- docker run -v akimasa/ArchDisklessMiner:/root/ base/archlinux /bin/bash /root/bootstrap-arch.sh
+- pwd
+- ls -R
+- docker run -v /home/travis/akimasa/ArchDisklessMiner:/root/ base/archlinux /bin/bash /root/bootstrap-arch.sh
 - docker run base/archlinux /bin/sh -c "ls /root/"
