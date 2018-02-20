@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+- docker pull base/archlinux
+
+script:
+- pacman -Syu --noconfirm
+- pacman -noconfirm -S arch-install-scripts
+- bash bootstrap-arch.sh
