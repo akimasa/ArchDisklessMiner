@@ -5,7 +5,7 @@ services:
 
 before_install:
 - docker pull base/archlinux
-- docker run base/archlinux /bin/sh -c "mkdir /srv/; mkdir -p /run/shm; pacman -Syu --noconfirm; pacman --noconfirm -S arch-install-scripts"
+- docker run base/archlinux /bin/sh -c "mkdir /srv/; mkdir /run/shm; pacman -Syu --noconfirm; pacman --noconfirm -S arch-install-scripts"
 script:
 - pwd
 - ls -R
