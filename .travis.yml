@@ -1,0 +1,27 @@
+sudo: required
+
+services:
+  - docker
+cache:
+  directories:
+    - /home/travis/pkg/
+
+before_install:
+- docker pull base/archlinux
+script:
+- mkdir /home/travis/http/
+- docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ -v /home/travis/pkg/:/var/cache/pacman/pkg/ -v /home/travis/http/:/srv/http/ base/archlinux /bin/bash /root/travis.sh
+- ls -lh /home/travis/http/
+deploy:
+  provider: releases
+  api_key:
+    secure: "BJt0PG5Raf09uZWbqHfnJ2Z5GZVG0Hjz8z8iKMKviPw3BmalAZh7mXZ87IWs/CIxq2xfJ4Bv6EBhMI0/5juKvSNmyyj6W8Zvx7DWl/FRlEUSGUkifh9qJ0GN2iO2xbgocbB9KR/WPx9kaw6M984/1ZkIXNrp6p1fH1tWkyMKYa2mE+8bd1O9yFZomKSe3x8jDPoVXKlku6Mg81GSU0g8s2Zr8qsym+5w1lKOg0wNtJ9rDiEYrtDA/Jq3kCMuVJXLNlNbQKHMz8V5OqDJ/7R5M2UyqV17tRBv4zXJZp5tJ1ORo1+uA/mblM2x4Vbi++ZwhTyMAS6wT28F4owCYtn6b4HoOkuGIxGVEWc4KslNOrVTJ+KFxc5XvpgovMYjmxByelLBUmQ+O7C78X0LRYoisbzxBV3GrkXiWCdfqCLgJa11gBkHgqu2mHsMNFKzKhil/bfoG3fldfLoASHvUOtNyE5WXP98H+qCETdGsU/mDDg0Q8r6QdOhbqibls0X/eqBE/PyTGhkwzUNiVEPhvPMxxUgkx7b7EaB9qBaGkzwQ/yQM0YqRBueE5WN94iQFbCG5lOQzfz4w/agq+PAbqnUALtnxlUZZWCol5+uWaFE9VHtIupoKSEzHchfFzZuKLqMapUahPBn+806+Nki4jNOpXzF4i+9hHFUME18OtJvSrE="
+  file:
+    - "/home/travis/http/arch.sfs"
+    - "/home/travis/http/linux"
+    - "/home/travis/http/initrd"
+  skip_cleanup: true
+  on:
+    branch: master
+  prerelease: true
+  body: 自動生成された最新版です。既にダウンロードしてあるarch.sfs, linux, initrdを置き換えてご利用ください。
