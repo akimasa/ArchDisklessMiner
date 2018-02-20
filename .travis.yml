@@ -9,5 +9,5 @@ before_install:
 script:
 - pwd
 - ls -R
-- docker run -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ base/archlinux /bin/bash /root/bootstrap-arch.sh
+- docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ base/archlinux /bin/bash /root/bootstrap-arch.sh
 - docker run base/archlinux /bin/sh -c "ls -R /root/"
