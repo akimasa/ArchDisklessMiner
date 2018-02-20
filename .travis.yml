@@ -22,8 +22,8 @@ deploy:
     - "/home/travis/http/initrd"
   skip_cleanup: true
   on:
-    tag: true
+    branch: master
   prerelease: true
-  body: 
-  自動生成された最新版です。
-  既にダウンロードしてあるarch.sfs, linux, initrdを置き換えてご利用ください。
+  body: |
+    自動生成された最新版です。
+    既にダウンロードしてあるarch.sfs, linux, initrdを置き換えてご利用ください。
