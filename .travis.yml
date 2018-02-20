@@ -5,9 +5,9 @@ services:
 
 before_install:
 - docker pull base/archlinux
-- docker run base/archlinux /bin/sh -c "mkdir /srv/; mkdir /run/shm; mkdir /dev/shm pacman -Syu --noconfirm; pacman --noconfirm -S arch-install-scripts"
+- docker run base/archlinux /bin/sh -c "pacman -Syu --noconfirm; pacman --noconfirm -S arch-install-scripts"
 script:
 - pwd
 - ls -R
-- docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ base/archlinux /bin/bash /root/bootstrap-arch.sh
+- docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ base/archlinux /bin/bash -c "mkdir /run/shm; /root/bootstrap-arch.sh"
 - docker run base/archlinux /bin/sh -c "ls -R /root/"
