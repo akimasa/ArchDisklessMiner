@@ -22,7 +22,7 @@ deploy:
     - "/home/travis/http/initrd"
   skip_cleanup: true
   on:
-    tag: true
+    tags: true
   prerelease: true
   body: |
     自動生成された最新版です。
