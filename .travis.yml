@@ -13,4 +13,4 @@ script:
 - pwd
 - ls -R
 - docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ -v /home/travis/pkg/:/var/cache/pacman/pkg/ base/archlinux /bin/bash -c "mkdir /run/shm; bash /root/bootstrap-arch.sh; bash /root/setip.sh"
-- docker run base/archlinux /bin/bash -c "mksquashfs /srv/arch/ /root/arch.sfs -e /srv/arch/boot/"
+- docker run base/archlinux /usr/bin/mksquashfs /srv/arch/ /root/arch.sfs -e /srv/arch/boot/
