@@ -23,3 +23,6 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
+  prerelease: true
+  name: "自動生成"
+  body: "自動生成された最新版です。\narch.sfs, linux, initrdをご利用ください。"
