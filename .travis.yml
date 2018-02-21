@@ -12,6 +12,10 @@ script:
 - mkdir /home/travis/http/
 - docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ -v /home/travis/pkg/:/var/cache/pacman/pkg/ -v /home/travis/http/:/srv/http/ base/archlinux /bin/bash /root/travis.sh
 - ls -lh /home/travis/http/
+before_deploy:
+  - git config --local user.name "Akimasa Tateba"
+  - git config --local user.email "akimasa@gmail.com"
+  - git tag "v0.1.4-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)
 deploy:
   provider: releases
   api_key:
