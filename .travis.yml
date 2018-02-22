@@ -16,11 +16,15 @@ before_deploy:
   - git config --local user.name "Akimasa Tateba"
   - git config --local user.email "akimasa@gmail.com"
   - export TAG="v0.1.4-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+  - git status
   - git stash
+  - git status
   - echo $TAG > .release
   - git add .release
   - git commit -m "automatic build $TAG"
+  - git status
   - git tag $TAG
+  - git status
 deploy:
   provider: releases
   api_key:
@@ -31,7 +35,7 @@ deploy:
     - "/home/travis/http/initrd"
   skip_cleanup: true
   on:
-    branch: master
+    branch: travis-dev
     tags: false
   prerelease: true
   body: 自動生成された最新版です。既にダウンロードしてあるarch.sfs, linux, initrdを置き換えてご利用ください。
