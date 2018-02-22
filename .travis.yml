@@ -16,6 +16,7 @@ before_deploy:
   - git config --local user.name "Akimasa Tateba"
   - git config --local user.email "akimasa@gmail.com"
   - export TAG="v0.1.4-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+  - git stash
   - echo $TAG > .release
   - git add .release
   - git commit -m "automatic build $TAG"
