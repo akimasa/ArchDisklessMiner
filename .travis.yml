@@ -19,8 +19,8 @@ before_deploy:
   - git status
   - git stash
   - git status
-  - git fetch
-  - git checkout origin/master
+  - git branch -av
+  - git checkout origin/$TRAVIS_BRANCH
   - echo $TAG > .release
   - git add .release
   - git commit -m "automatic build $TAG"
