@@ -15,7 +15,10 @@ script:
 before_deploy:
   - git config --local user.name "Akimasa Tateba"
   - git config --local user.email "akimasa@gmail.com"
-  - git tag "v0.1.4-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+  - export TAG="v0.1.4-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+  - echo $TAG > .lastrelease
+  - git commit -a -m "automatic build $TAG"
+  - git tag $TAG
 deploy:
   provider: releases
   api_key:
