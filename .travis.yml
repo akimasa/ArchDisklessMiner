@@ -19,7 +19,8 @@ before_deploy:
   - git status
   - git stash
   - git status
-  - git checkout master
+  - git fetch
+  - git checkout origin/master
   - echo $TAG > .release
   - git add .release
   - git commit -m "automatic build $TAG"
