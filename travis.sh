@@ -7,5 +7,6 @@ cd /root
 #chroot /srv/arch/ pacman --noconfirm -R lvm2 man-db man-pages nano reiserfsprogs mdadm
 #bash setip.sh
 #mksquashfs /srv/arch/ /srv/http/arch.sfs -comp xz -Xbcj x86 -b 1M -e /srv/arch/boot/ -e /srv/arch/usr/share/man/
-touch /srv/http/arch.sfs
-touch /srv/http/{linux,initrd}
+echo 1 > /srv/http/arch.sfs
+echo 1 > /srv/http/linux
+echo 1 > /srv/http/initrd
