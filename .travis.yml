@@ -27,13 +27,13 @@ deploy:
     - "/home/travis/http/initrd"
   skip_cleanup: true
   on:
-    branch: travis-dev
+    branch: master
     tags: false
   prerelease: true
   body: テストです。無視してください
 branches:
   only:
-  - master
+  - travis-dev
 notifications:
   slack:
     secure: "ehEfOk3oa2DLU/sAjktG5INVMI2HC7Y2TUuUxN6rLvORu6kg+P5dgmZ+DRoq1BL6p3Lp1hsO287eVslK/ZQI0lIoDDjRjjR8tpQCPTeVodzHhWYaHx5z9nUfrgyXdTsUwb9iFDAHi5SCeryNg/XahwmXNSQvwcAbD6UeetSVIoS9xSUzeK5hn3VAqydv3Goito/zfqri95/rF4QashRW2XAchtWFGtY3VXnbFVHl2SNJepoFL5CHL+YED0Gy9oXYIB5vObB7WniGSLy3hRJbCIfaOSaqMbRscHFYLlR4Kgbk5BGJnTt8uPY4NNy0tGFadcHYz3KYgcw7olYfWdipdwUEYuR2RduW2IMOCWTW0R8l5qhZzScVmC8GNmiHA2sPCmL3ENC7+YJtm+OUteZsSst3E2tCVowf//+8ATaFEjeYk+wZHFiZrwk5EPHLBw4EBU0Cv2RpSR4A03ZTgYTQUi7ZU17gKPJ/5WnUYyBnE3WYhEYPuTfMBqc9VsNb7+pnEgKdk1SD4TRZPGyrP73B9HG6Z/h3GiR8Ko226cQhmsHEEvxrN8+ufZyzX7UxkVnVUr3hC7WzIH4u/pjGqOMMlFOIOsClg9XWymwdhrsNswA+GSBYj9BgNrnSKJDPA3V+kcUea0J/l1grTg1p6pWl/2b7za98ayrPxnSdlPDJPCY="
