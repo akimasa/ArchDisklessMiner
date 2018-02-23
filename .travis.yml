@@ -15,10 +15,8 @@ script:
 before_deploy:
   - git config --local user.name "Akimasa Tateba"
   - git config --local user.email "akimasa@gmail.com"
-  - export TAG="v0.1.4-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-  - echo $TAG
-  - echo $(head -c 8 /dev/urandom | xxd -p | tr -d "\n")
-  - git tag ${TAG}-$(head -c 8 /dev/urandom | xxd -p | tr -d "\n")
+  - export $TRAVIS_TAG="v0.1.4-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
+  - git tag $TRAVIS_TAG
 deploy:
   provider: releases
   api_key:
