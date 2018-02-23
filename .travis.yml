@@ -16,16 +16,7 @@ before_deploy:
   - git config --local user.name "Akimasa Tateba"
   - git config --local user.email "akimasa@gmail.com"
   - export TAG="v0.1.4-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
-  - git checkout travis-dev
-  - git status
-  - git branch -av
-  - git reflog
-  - echo $TAG > .release
-  - git add .release
-  - git commit -m "automatic build $TAG"
-  - git status
   - git tag $TAG
-  - git status
 deploy:
   provider: releases
   api_key:
