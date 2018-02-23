@@ -15,11 +15,27 @@ LANケーブルだけ接続してネットワークにつなぎ、BIOS設定し�
 機種によってはPXEではなく、IBAと書いてあったりします。Network Bootかもしれません。
 
 BIOSでNetwork Bootを有効にし、**保存して再起動**しないと出てこない場合があります。
+# 起動しない
+Skypeがインストールされていると、TCP Port 80が既に使われていてリグが起動ができないことがあります。
+その場合は、Skypeを終了するか、[Skype がポート 80 と 443 を使用しないようにする](http://blog.nnasaki.com/entry/2015/11/20/151532)
+を参考にTCP Port 80を使われないようにしてください。
+
+起動時にファイアーウォールの許可を行わなかった場合もリグが正常に起動できない原因のことがあります。
+tftp.exeの起動時に許可すればよいので通常は必要ありませんが、間違って拒否した場合などは
+[Windowsファイアウォールの例外にアプリケーションを追加する方法](http://faq.buffalo.jp/app/answers/detail/a_id/792)
+を参考に許可を行うと使えるかもしれません。
+ダメだった場合はIssueをたてるか、Twitterの[@akimasa2000](https://twitter.com/akimasa2000)にでも聞いてください。
 # よくある質問
 Q: 既に入っているWindowsは消えるの？
 
 A: 消えません。ただし、意図的に消すコマンドを入力した場合は消えます。
 このマイニングツールは、すべてメモリ上に展開されて実行されます。
+
+Q: GPU周波数設定準備って何の意味があるの？
+
+A: これを1度だけ実行しないとnvidia-settingsを実行できません。
+これはNVIDIAの出している設定ツールが[nvidiaのXドライバを経由しないとGPUを操作できない](https://unix.stackexchange.com/questions/387546/nvidia-settings-without-nvidia-dedicated-x-server)からです。
+Xサーバーを起動することでnvidia-settingsを実行できるようにしていますが、**もっと良い方法があったら教えてください！**
 # 不明点があったら…
 - わからないことがあったらIssueをたてるか、Twitterの[@akimasa2000](https://twitter.com/akimasa2000)にでも聞いてください。
 - あなたにわからなかったことは、ほかの人にわからない事です。
