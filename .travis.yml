@@ -2,15 +2,12 @@ sudo: required
 
 services:
   - docker
-cache:
-  directories:
-    - /home/travis/pkg/
 
 before_install:
 - docker pull base/archlinux
 script:
 - mkdir /home/travis/http/
-- docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ -v /home/travis/pkg/:/var/cache/pacman/pkg/ -v /home/travis/http/:/srv/http/ base/archlinux /bin/bash /root/travis.sh
+- docker run --privileged -v /home/travis/build/akimasa/ArchDisklessMiner:/root/ -v /home/travis/http/:/srv/http/ base/archlinux /bin/bash /root/travis.sh
 - ls -lh /home/travis/http/
 before_deploy:
   - git config --local user.name "Akimasa Tateba"
