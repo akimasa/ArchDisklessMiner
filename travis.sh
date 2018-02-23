@@ -1,8 +1,8 @@
 #!/bin/bash
-pacman -Syu --noconfirm
-pacman --noconfirm -S squashfs-tools
-mkdir /run/shm
-cd /root
+#pacman -Syu --noconfirm
+#pacman --noconfirm -S squashfs-tools
+#mkdir /run/shm
+#cd /root
 #bash bootstrap-arch.sh
 #chroot /srv/arch/ pacman --noconfirm -R lvm2 man-db man-pages nano reiserfsprogs mdadm
 #bash setip.sh
