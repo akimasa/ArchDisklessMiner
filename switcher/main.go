@@ -107,7 +107,6 @@ func getMaxEarn(hr hashratearr) (me maxearn, err error) {
 				me.Miner = hr.getMiner(s.Name)
 				me.Port = s.Port
 			}
-			// fmt.Printf("name:%s, earning:%f\n", s.Name, earning)
 		}
 
 	}
@@ -198,7 +197,6 @@ func main() {
 			cmd = tmp
 		}
 		if strings.Compare(cmd, lastcmd) != 0 {
-			// spawn cmd
 			if firsttime {
 				firsttime = false
 			} else {
@@ -216,13 +214,4 @@ func main() {
 		lastcmd = cmd
 		time.Sleep(60 * time.Second)
 	}
-	/*
-		body, err := ioutil.ReadAll(resp.Body)
-		resp.Body.Close()
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Println(string(body))
-	*/
-
 }
