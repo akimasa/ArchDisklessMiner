@@ -23,6 +23,7 @@ import (
 var userpass string
 var gpunum int
 var benchmode bool
+var location string
 
 type hashratearr []ccminer.Hashrate
 
@@ -142,6 +143,7 @@ func bench() []ccminer.Hashrate {
 func init() {
 	flag.IntVar(&gpunum, "gpunum", 1, "Number of your gpus")
 	flag.StringVar(&userpass, "wallet", "", "Your BTC wallet")
+	flag.StringVar(&location, "location", "jp", "Nicehash server locaiton")
 	flag.BoolVar(&benchmode, "benchmark", false, "Benchmark mode")
 }
 func main() {
@@ -188,14 +190,14 @@ func main() {
 		fmt.Printf("Select name:%s, earning:%f\n", me.NicehashName, me.Earning)
 		cmd := ""
 		if strings.Compare("ccminer", me.Miner) == 0 {
-			url := fmt.Sprintf("stratum+tcp://%s.jp.nicehash.com:%d", me.NicehashName, me.Port)
+			url := fmt.Sprintf("stratum+tcp://%s.%s.nicehash.com:%d", me.NicehashName, location, me.Port)
 			cmd = fmt.Sprintf("LD_LIBRARY_PATH=./ ./ccminer -o %s -a %s -O %s", url, me.Name, userpass)
 		} else if strings.Compare("excavator", me.Miner) == 0 {
-			excavator.MakeJSON(me.NicehashName, me.Port, userpass)
+			excavator.MakeJSON(me.NicehashName, me.Port, userpass, location)
 			cmd = fmt.Sprintf("ALGO=%s ./excavator -c excavator-run.json", me.NicehashName)
 		} else {
 			tmp := me.Miner
-			hostport := fmt.Sprintf("%s.jp.nicehash.com:%d", me.NicehashName, me.Port)
+			hostport := fmt.Sprintf("%s.%s.nicehash.com:%d", me.NicehashName, location, me.Port)
 			tmp = strings.Replace(tmp, "%HOSTPORT%", hostport, -1)
 			tmp = strings.Replace(tmp, "%USERPASS%", userpass, -1)
 			cmd = tmp

@@ -16,10 +16,10 @@ import (
 
 var execCmd *exec.Cmd
 
-func MakeJSON(algo string, port int, wallet string) {
+func MakeJSON(algo string, port int, wallet string, location string) {
 	tmpl := `[
 		{"time":0,"commands":[
-			{"id":1,"method":"algorithm.add","params":["%s","%s.jp.nicehash.com:%d","%s.testrig"]}
+			{"id":1,"method":"algorithm.add","params":["%s","%s.%s.nicehash.com:%d","%s.testrig"]}
 		]},
 		{"time":3,"commands":[
 			%s
@@ -31,7 +31,7 @@ func MakeJSON(algo string, port int, wallet string) {
 		]`
 	jsonfile, _ := os.OpenFile("excavator-run.json", os.O_CREATE|os.O_WRONLY, 0666)
 	jsonfile.Truncate(0)
-	jsonfile.WriteString(fmt.Sprintf(tmpl, algo, algo, port, wallet, GetWorkerTemplate()))
+	jsonfile.WriteString(fmt.Sprintf(tmpl, algo, algo, location, port, wallet, GetWorkerTemplate()))
 	jsonfile.Close()
 }
 
