@@ -9,6 +9,7 @@ LANケーブルだけ接続してネットワークにつなぎ、BIOS設定し�
 1. [最新のRelease](https://github.com/akimasa/ArchDisklessMiner/releases/latest)をダウンロードして展開する。
 2. tftp.exeを実行する。
 3. リグでPXEブートする。
+4. [管理ツール](https://github.com/akimasa/DisklessMinerAdmin/releases)を利用して設定する。
 ## PXEブート
 ネットワークから起動する仕組みです。
 
@@ -31,11 +32,6 @@ Q: 既に入っているWindowsは消えるの？
 A: 消えません。ただし、意図的に消すコマンドを入力した場合は消えます。
 このマイニングツールは、すべてメモリ上に展開されて実行されます。
 
-Q: GPU周波数設定準備って何の意味があるの？
-
-A: これを1度だけ実行しないとnvidia-settingsを実行できません。
-これはNVIDIAの出している設定ツールが[nvidiaのXドライバを経由しないとGPUを操作できない](https://unix.stackexchange.com/questions/387546/nvidia-settings-without-nvidia-dedicated-x-server)からです。
-Xサーバーを起動することでnvidia-settingsを実行できるようにしていますが、**もっと良い方法があったら教えてください！**
 # 不明点があったら…
 - わからないことがあったらIssueをたてるか、Twitterの[@akimasa2000](https://twitter.com/akimasa2000)にでも聞いてください。
 - あなたにわからなかったことは、ほかの人にわからない事です。
