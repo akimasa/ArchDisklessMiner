@@ -37,11 +37,11 @@ func MakeJSON(algo string, port int, wallet string) {
 
 // BenchAlgo ... only support equihash now
 func BenchAlgo(algo string) {
-	BenchmarkAlgo(algo)
+	BenchmarkAlgo(algo, 10)
 }
 
 // currently only support equihash
-func BenchmarkAlgo(algo string) (value float32) {
+func BenchmarkAlgo(algo string, wait time.Duration) (value float32) {
 	execCmd = exec.Command("./excavator", "-p", "4000")
 	stdout, err := execCmd.StdoutPipe()
 
@@ -55,18 +55,36 @@ func BenchmarkAlgo(algo string) (value float32) {
 	scanner := bufio.NewScanner(stdout)
 
 	// total speed: 390.490956 H/s
-	re := regexp.MustCompile(`speed: (?P<rate>\d*.\d*?) H/s`)
-	receiver := make(chan string)
+	re := regexp.MustCompile(`speed: (?P<rate>\d*.\d*?) (?P<prefix>[kKmMgGtT]*?)H/s`)
+	receiver := make(chan float64)
 	go func() {
-		hr := ""
 		for scanner.Scan() {
 			text := scanner.Text()
 			fmt.Println(text)
 			match := re.FindStringSubmatch(text)
 			if match != nil {
 				fmt.Println(match[1])
-				hr = match[1]
-				receiver <- hr
+				prefix := 1.0
+				switch match[2][0] {
+				case 'k':
+				case 'K':
+					prefix = 1000.0
+					break
+				case 'm':
+				case 'M':
+					prefix = 1000 * 1000.0
+				case 'g':
+				case 'G':
+					prefix = 1000 * 1000 * 1000.0
+				case 't':
+				case 'T':
+					prefix = 1000 * 1000 * 1000 * 1000.0
+				}
+				hr, err := strconv.ParseFloat(match[1], 64)
+				if err != nil {
+					hr = 0.0
+				}
+				receiver <- hr * prefix
 				return
 			}
 		}
@@ -90,7 +108,7 @@ func BenchmarkAlgo(algo string) (value float32) {
 		}
 		fmt.Println(ret)
 	}
-	time.Sleep(time.Second * 10)
+	time.Sleep(time.Second * wait)
 	ret, err = GetJSON(`{"id":1,"method":"algorithm.print.speeds","params":["0"]}`)
 	if err != nil {
 		panic(err)
@@ -101,12 +119,7 @@ func BenchmarkAlgo(algo string) (value float32) {
 		select {
 		case recv := <-receiver:
 			fmt.Println("recv", recv)
-			hashrate, err := strconv.ParseFloat(recv, 32)
-			if err != nil {
-				fmt.Println("err", err)
-				return 0
-			}
-			return float32(hashrate)
+			return float32(recv)
 		case <-time.After(time.Second * 1):
 			fmt.Println("timeout")
 			return 0

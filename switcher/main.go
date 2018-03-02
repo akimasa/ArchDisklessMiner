@@ -115,7 +115,11 @@ func getMaxEarn(hr hashratearr) (me maxearn, err error) {
 func bench() []ccminer.Hashrate {
 	ccminerHr := ccminer.BenchHashrate()
 
-	equihash := excavator.BenchmarkAlgo("equihash")
+	eth := excavator.BenchmarkAlgo("daggerhashimoto", 30)
+	ethHr := ccminer.Hashrate{NicehashName: "daggerhashimoto", MinerName: "daggerhashimoto", Hashrate: float64(eth / 1000), Miner: "excavator"}
+	ccminerHr = append(ccminerHr, ethHr)
+
+	equihash := excavator.BenchmarkAlgo("equihash", 10)
 	equihashHr := ccminer.Hashrate{NicehashName: "equihash", MinerName: "equihash", Hashrate: float64(equihash / 1000), Miner: "excavator"}
 
 	ccminerHr = append(ccminerHr, equihashHr)
