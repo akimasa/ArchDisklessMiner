@@ -65,20 +65,22 @@ func BenchmarkAlgo(algo string, wait time.Duration) (value float32) {
 			if match != nil {
 				fmt.Println(match[1])
 				prefix := 1.0
-				switch match[2][0] {
-				case 'k':
-				case 'K':
-					prefix = 1000.0
-					break
-				case 'm':
-				case 'M':
-					prefix = 1000 * 1000.0
-				case 'g':
-				case 'G':
-					prefix = 1000 * 1000 * 1000.0
-				case 't':
-				case 'T':
-					prefix = 1000 * 1000 * 1000 * 1000.0
+				if len(match[2]) > 0 {
+					switch match[2][0] {
+					case 'k':
+					case 'K':
+						prefix = 1000.0
+						break
+					case 'm':
+					case 'M':
+						prefix = 1000 * 1000.0
+					case 'g':
+					case 'G':
+						prefix = 1000 * 1000 * 1000.0
+					case 't':
+					case 'T':
+						prefix = 1000 * 1000 * 1000 * 1000.0
+					}
 				}
 				hr, err := strconv.ParseFloat(match[1], 64)
 				if err != nil {
