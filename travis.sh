@@ -1,6 +1,6 @@
 #!/bin/bash
 pacman -Syu --noconfirm
-pacman --noconfirm -S squashfs-tools
+pacman --noconfirm -S squashfs-tools arch-install-scripts
 mkdir /run/shm
 cd /root
 echo travis_fold:start:bootstrap
